@@ -494,10 +494,8 @@ func (bot *BotAPI) GetUpdatesChan(config UpdateConfig) (UpdatesChannel, error) {
 			}
 
 			for _, update := range updates {
-				if update.UpdateID >= config.Offset {
-					config.Offset = update.UpdateID + 1
-					ch <- update
-				}
+				config.Offset = update.UpdateID + 1
+				ch <- update
 			}
 		}
 	}()
